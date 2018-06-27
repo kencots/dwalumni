@@ -1,0 +1,74 @@
+.banner{
+	background-image: url('https://images.pexels.com/photos/205420/pexels-photo-205420.jpeg?auto=compress&cs=tinysrgb&h=650&w=940');
+	background-attachment: fixed;
+	background-size: cover;
+}
+.banner-title{
+	font-weight:bold;
+	 font-size:60px;
+}
+.tagline{
+	margin:50px 0 100px 0 ;
+}
+.text-bold{
+	font-weight:bold; 
+}
+.desc-title{
+	font-weight:bold; 
+	text-align:center;
+	padding:15px;
+}
+.text-highlight{
+	color:#e74c3c;
+}
+.text-highlight-bold{
+	color:#e74c3c;
+	font-weight: bold;
+}
+.text-center-col{
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
+}
+.text-note{
+	font-size: 14px;
+	color: #bdc3c7
+}
+.item-center{
+	align-items: center;
+}
+.text-center{
+	text-align: center;
+}
+.red-container{
+	padding: 30px 10px 30px 10px;
+	margin-bottom:50px;
+}
+.primary-icon{
+	font-size: 50px;
+	color:#e74c3c;
+	padding: 0px;
+}
+.sec-padding{
+	margin-bottom:25px;
+}
+.card-item-dist{
+	margin:5px;
+	padding:0;
+}
+.card-text{
+	line-height: 18px;
+}
+.card-light{
+	border-color:#e74c3c;
+	text-align:center;
+}
+.desc-card{
+	border-color:#e74c3c; 
+	margin:20px 0 20px 0;
+	padding:20px;
+	border-radius:0
+}
+.overlay-card{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
