@@ -7,6 +7,8 @@ export default class Login extends Component{
     return(
 
 <section style={{background:"#fafafa"}}>
+  <div style={{height : "86px" }}></div> 
+        
   <div className="container">
     <div className="row justify-content-center align-items-center">
       <div className="col-12 col-lg-7 z-depth-1 py-3 px-4 bg-white">

@@ -12,13 +12,16 @@ import Transition from "pawjs/src/components/transition";
   };
 })
 export default class Loader extends Component {
+  state = {
+    component: false
+  }
   constructor(props) {
     super(props);
   }
   render() {
     return (
       <div >
-        <Header />
+        <Header ref="header"/>
         {
           this.props.screenState === SCREEN_STATE_LOADING &&
           (

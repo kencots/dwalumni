@@ -7,6 +7,8 @@ export default class Detail extends Component{
 		return(
 
 			<div className="container">
+				<div style={{height : "86px" }}></div> 
+        
 				<div className="row">
 					<div className="col-md-12" >
 						<div className="bg-primary px-4 py-md-5 m-0">
