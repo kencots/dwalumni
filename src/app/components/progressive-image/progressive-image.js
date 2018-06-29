@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SmallImage from "../../../resources/images/mario-large.png?sizes=100w+200w+400w+800w&placeholder&lightweight";
 import Picture from "pawjs/src/components/picture/picture";
 
 export default class ProgressiveImage extends Component {
@@ -8,7 +7,7 @@ export default class ProgressiveImage extends Component {
       <div className="mt-4">
         <Picture
           pictureClassName="d-inline-block w-100 my-4"
-          image={SmallImage}
+          image={url('https://upload.wikimedia.org/wikipedia/id/thumb/c/c2/LOGO_KABUPATEN_KEBUMEN.png/1200px-LOGO_KABUPATEN_KEBUMEN.png')}
           alt="Small Image"
           imgClassName="w-100"
         />

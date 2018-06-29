@@ -1,11 +1,11 @@
-import Home from "../app/components/home/home.js";
+import Profil from "../app/components/profil/profil.js";
 import DefaultLayout from "../app/components/layout";
 
 const routes = [
   {
-    path: "/",
+    path: "/profil",
     exact: true,
-    component: Home,
+    component: Profil,
     layout: DefaultLayout,
   }
 ];

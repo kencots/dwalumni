@@ -17,7 +17,7 @@ export default class Loader extends Component {
   }
   render() {
     return (
-      <div>
+      <div >
         <Header />
         {
           this.props.screenState === SCREEN_STATE_LOADING &&

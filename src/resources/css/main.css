@@ -6685,3 +6685,119 @@ section .section-header .section-title {
   border-left : 5px solid #eee !important;
 }
 /*# sourceMappingURL=main.css.map */
+
+.red box{
+  background-color:red;
+}
+._field-input{
+  display: inline;
+  position: relative;
+}
+._field-input ._form-control::placeholder{
+  font-weight: 600;
+  color:#aaa;
+}
+._field-input ._form-control{
+  width: 100%;
+}
+._field-input._underlined ._form-control{
+  border :0px;
+  border-bottom :2px solid #aaa;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+}
+._field-input._underlined._with-icon ._form-control{
+  padding-left: 40px;
+  transition: .4s ease;
+}
+._field-input._underlined ._form-control:focus{ 
+  border-bottom :2px solid #e51b23;
+  outline: 0;
+}
+._field-input._underlined._with-icon ._icon{
+  position: absolute;
+  top:0;
+  bottom : 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  transition: .3s ease;
+  font-size: 1.3rem;
+}
+._field-input._underlined ._form-control:focus ~ ._icon{
+  color :#e51b23;
+}
+._field-input._underlined ._icon{
+  color: #666;
+}
+/*halaman profil (main)*/
+.bg-menu{
+  backgroundColor: rgba(255, 255,255,0.8);
+}
+.top-margin{
+  marginTop: -53px;
+}
+.h6-size{
+  fontSize: 0.8rem;
+}
+
+/*exam result styles*/
+
+.med-icon{
+  font-size:20px;
+}
+.text-center{
+  text-align: center;
+  align-items: center;
+}
+.fluid-div{
+  padding: 0;
+  margin:0;
+}
+.card-icon-link{
+  font-size: 25px;
+  float: right;
+  margin-top: 15px;
+}
+.text-bold{
+  font-weight: bold;
+}
+.text-note{
+  font-size: 14px;
+  color: #95a5a6
+}
+.item-left{
+  float: left;
+}
+.flex{
+  display: flex;
+  flex-direction: column;
+}
+.active-tab{
+  background-color: #fff;
+  color:#3498db;
+}
+.inactive-tab{
+  background-color: #3498db;
+  color: #fff;
+}
+.nav-link:hover{
+  background-color: #fff;
+  color: #2980b9;
+}
+.big-icon{
+  font-size:100px;
+}
+/*sidebar profil detail*/
+@media (max-width: 767.98px) {
+    ._wrapper-header-profil{
+      margin-bottom: 0px;
+      display: none !important;
+    }
+  }
+  @media (min-width: 768px) {
+    ._wrapper-header-profil{
+      margin-bottom: -90px;
+    }
+  }
