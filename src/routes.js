@@ -18,5 +18,6 @@ export default configureRoutes([
   Login,
   Register,
   Profil,
-  Detail
+  Detail,
+  Blog
 ]);

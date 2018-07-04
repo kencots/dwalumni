@@ -6735,6 +6735,13 @@ section .section-header .section-title {
 ._field-input._underlined ._icon{
   color: #666;
 }
+._field-input-select{
+  width:100%;
+}
+ ._text-placeholder{
+  font-weight: 600;
+  color:#aaa;
+}
 /*halaman profil (main)*/
 .bg-menu{
   background-color: rgba(255, 255,255,0.8);

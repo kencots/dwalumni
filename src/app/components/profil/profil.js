@@ -34,7 +34,7 @@ export default class Profil extends Component{
 						
 						<div className="col-lg-8 col-12">
 							<div className="_field-input _with-icon _underlined">
-				                <input type="email" name="search" placeholder="Search" className="_form-control"/>
+				                <input type="email" name="search" placeholder="Search" className="_form-control" autocomplete="off"/>
 				                <i className="fas fa-search _icon "></i>
 				            </div>
 						</div>
@@ -120,22 +120,14 @@ export default class Profil extends Component{
 							  	</div>
 							  	<div className="card-body p-0 top-margin" >
 							  		<div className="px-4 tranparent-bg-black">
-							  			<div className="row justify-content-between">
+							  			<div className="row justify-content-between pt-2" style={{fontSize:"12px"}}>
 							  				<div>
-							  					<b className="text-white">-----</b>
+							  					<span className="text-white"><i class="fas fa-building text-success"> </i> Expected Salary:</span><br/>
+							  					<span className="text-white"><i class="fas fa-money-bill-wave text-info"></i>  EXPECTED WORK LOCATION:</span>
 							  				</div>
 							  				<div>
-							  					<b className="text-white">-----</b>
-							  				
-							  				</div>
-
-							  			</div>
-							  			<div className="row justify-content-between">
-							  				<div>
-							  					<b className="text-white">-----</b>
-							  				</div>
-							  				<div>
-							  					<b className="text-white">-----</b>
+							  					<b className="text-white">Rp 380.000,00</b><br/>
+							  					<b className="text-white">DKI Jakarta</b>
 							  				
 							  				</div>
 
@@ -182,22 +174,14 @@ export default class Profil extends Component{
 							  	</div>
 							  	<div className="card-body p-0 top-margin">
 							  		<div className="px-4 tranparent-bg-black">
-							  			<div className="row justify-content-between">
+							  			<div className="row justify-content-between pt-2" style={{fontSize:"12px"}}>
 							  				<div>
-							  					<b className="text-white">-----</b>
+							  					<span className="text-white"><i class="fas fa-building text-success"> </i> Expected Salary:</span><br/>
+							  					<span className="text-white"><i class="fas fa-money-bill-wave text-info"></i>  EXPECTED WORK LOCATION:</span>
 							  				</div>
 							  				<div>
-							  					<b className="text-white">-----</b>
-							  				
-							  				</div>
-
-							  			</div>
-							  			<div className="row justify-content-between">
-							  				<div>
-							  					<b className="text-white">-----</b>
-							  				</div>
-							  				<div>
-							  					<b className="text-white">-----</b>
+							  					<b className="text-white">Rp 380.000,00</b><br/>
+							  					<b className="text-white">DKI Jakarta</b>
 							  				
 							  				</div>
 
@@ -243,23 +227,15 @@ export default class Profil extends Component{
 							  		<img  src="https://s3.envato.com/files/193256165/Preview.jpg"  style={{width:"100%"}}/>
 							  	</div>
 							  	<div className="card-body p-0 top-margin">
-							  		<div className="px-4 tranparent-bg-black" >
-							  			<div className="row justify-content-between">
+							  		<div className="px-4 tranparent-bg-black">
+							  			<div className="row justify-content-between pt-2" style={{fontSize:"12px"}}>
 							  				<div>
-							  					<b className="text-white">-----</b>
+							  					<span className="text-white"><i class="fas fa-building text-success"> </i> Expected Salary:</span><br/>
+							  					<span className="text-white"><i class="fas fa-money-bill-wave text-info"></i>  EXPECTED WORK LOCATION:</span>
 							  				</div>
 							  				<div>
-							  					<b className="text-white">-----</b>
-							  				
-							  				</div>
-
-							  			</div>
-							  			<div className="row justify-content-between">
-							  				<div>
-							  					<b className="text-white">-----</b>
-							  				</div>
-							  				<div>
-							  					<b className="text-white">-----</b>
+							  					<b className="text-white">Rp 380.000,00</b><br/>
+							  					<b className="text-white">DKI Jakarta</b>
 							  				
 							  				</div>
 

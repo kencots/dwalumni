@@ -57,7 +57,7 @@ class Header extends Component{
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link font-weight-bold px-3" href="#">Blog</a>
+              <Link className="nav-link font-weight-bold px-3" to="/blog">Blog</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link font-weight-bold px-3" href="#">FAQs</a>
