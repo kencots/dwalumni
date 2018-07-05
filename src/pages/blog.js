@@ -3,14 +3,8 @@ import BlogPost from "../app/components/blog/post";
 import DefaultLayout from "../app/components/layout";
 import axios from "axios";
 
-axios({
-      method : 'GET',
-      url : 'http://192.168.0.9:8000/api/user',
-      headers : {
-        'Content-Type':'application/json',
-        'Authorization':"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImV4cCI6MTU2MTcwODAwMn0.tFSDlCgVffdtip0VDjUFKqByKEqwv2Oh9sfQHOTTR4U"
-      }
-})
+const token=localStorage.getItem('token');
+console.log(token);
 const routes = [
   {
     path: "/blog",
@@ -20,26 +14,13 @@ const routes = [
     preLoadData: async ({ api }) =>{
       return axios({
       method : 'GET',
-      url : 'http://192.168.0.9:8000/api/user',
+      url : 'http://192.168.0.6:8000/api/skill/',
       headers : {
         'Content-Type':'application/json',
-        'Authorization':"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImV4cCI6MTU2MTcwODAwMn0.tFSDlCgVffdtip0VDjUFKqByKEqwv2Oh9sfQHOTTR4U"
-        }
-      });
+        'Authorization':"JWT "+token
+      }
+});
     }
-
-    // preLoadData: async ({ api }) => {
-    //   return axios.get(`http://192.168.0.9:8000/api/user`,{
-    //     headers:{
-    //       'Content-Type':'application/json',
-    //       'Authorization':"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImV4cCI6MTU2MTcwODAwMn0.tFSDlCgVffdtip0VDjUFKqByKEqwv2Oh9sfQHOTTR4U"
-    //     }.then(function (response ){
-    //       console.log(response.data)
-    //     })
-    //   });
-    //   //api.fetch(`http://rest.learncode.academy/api/handi/user`, { swcache: 20000 });
-
-    // },
   },
   {
     path: "/blog/:id",

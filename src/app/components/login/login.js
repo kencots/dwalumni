@@ -1,8 +1,14 @@
 import React, {Component} from "react";
 import classNames from "classnames";
 import Link from "pawjs/src/components/link";
+import axios from 'axios';
 
-export default class Login extends Component{
+import { connect } from 'react-redux'
+
+
+import {getToken} from './action'
+
+ class Login extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -25,11 +31,28 @@ export default class Login extends Component{
     this.setState({isChecked:event.target.checked});
     }
   handleSubmit(){
-     alert('A name was submitted: ' + this.state.email+' password :'+this.state.isChecked);
-     this.setState({email:'',password:'',isChecked:false})
-    event.preventDefault();
+     axios({
+              method:'post',
+              url:'http://192.168.0.6:8000/api/authentication/',
+              headers:{
+                "Content-Type":"application/json"
+              },
+              data:{
+                username: this.state.email,
+                password: this.state.password
+              }
+            }).then(function(response){
+              console.log(response);
+              const token=response.data.token;
+              localStorage.setItem('token',token);
+             //this.props.dispatch(getToken(token));
+            });
+      !this.state.isChecked ? this.setState({email:'',password:'',isChecked:false}):'';
+      event.preventDefault();
+
   }
   render(){
+    
     return(
 
 <section style={{background:"#fafafa"}}>
@@ -46,11 +69,11 @@ export default class Login extends Component{
           <small className="d-block text-right text-muted">Dumbways.com</small>
         <div className="d-none d-md-block">
           <br/> 
-          <form onSubmit={this.handleSubmit}>
+          <form >
           <div className="row">
             <div className="col-12">        
               <div className="_field-input _with-icon _underlined">
-                <input type="email" name="email" placeholder="Email" className="_form-control" autoComplete="off" value={this.state.email}  onChange={this.handleChangeEmail}  />
+                <input type="text" name="email" placeholder="Email" className="_form-control" autoComplete="off" value={this.state.email}  onChange={this.handleChangeEmail} />
                 <i className="fas fa-at _icon "></i>
               </div>
             </div>
@@ -67,13 +90,14 @@ export default class Login extends Component{
           <br/> 
           <div className="d-flex justify-content-between">
             <div className="custom-control custom-checkbox">
-               <input type="checkbox" className="custom-control-input" id="checkbox-agree" value={this.state.isChecked} defaultChecked={this.state.isChecked} onChange={this.handleCheckbox}  />
-
+               <input type="checkbox" className="custom-control-input" id="checkbox-remember" value={this.state.isChecked} defaultChecked={this.state.isChecked} onChange={this.handleCheckbox}  />
                 <label className="custom-control-label" htmlFor="checkbox-agree" style={{fontSize: "0.9rem"}}>Remember me</label>
             </div>
-            <input type='submit' className="btn btn-primary" value='Submit' />
           </div>
           </form>
+            <a href="/">
+           <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+           </a>
         </div>
        <div className="d-block d-md-none">
           <br/> 
@@ -115,4 +139,9 @@ export default class Login extends Component{
       )
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    login: state.tokenReducer
+  }
+}
+export default connect(mapStateToProps)(Login);

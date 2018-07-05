@@ -10,15 +10,15 @@ export default class BlogListing extends React.Component {
     return (
       <div className="mt-5">
         {
-          _.map(this.props.preLoadedData.data, blog => {
-            const id = _.get(blog, "results.id", 0);
+          _.map(this.props.preLoadedData.data.results, blog => {
+            const id = _.get(blog, "id", 0);
             return (
               <div key={id} className="media">
                 <div className="media-body">
                   <h5 className="mt-0">
-                    <Link to={`/blog/${id}`} dangerouslySetInnerHTML={{ __html: _.get(blog, "results.username")}} />
+                    <Link to={`/blog/${id}`} dangerouslySetInnerHTML={{ __html: _.get(blog, "name")}} />
                   </h5>
-                  <p dangerouslySetInnerHTML={{ __html:_.get(blog, "results.email") }} />
+                  <p dangerouslySetInnerHTML={{ __html:_.get(blog, "icon") }} />
                 </div>
               </div>
             );

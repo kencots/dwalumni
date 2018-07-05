@@ -140,7 +140,7 @@ export default class Register extends Component{
 					<br/>	
 					<div className="d-flex justify-content-between">
 						<div className="custom-control custom-checkbox">
-						  	<input type="checkbox" className="custom-control-input" id="checkbox-agree" value={this.state.isChecked} onChange={this.handleCheckbox} defaultChecked={this.state.isChecked} />
+						  	<input type="checkbox" className="custom-control-input" id="checkbox-agree1" value={this.state.isChecked} onChange={this.handleCheckbox} defaultChecked={this.state.isChecked} />
 						  	<label className="custom-control-label" htmlFor="checkbox-agree" style={{fontSize: "0.9rem"}}>I agree with terms and conditions</label>
 						</div>
 						{this.state.isChecked ? <input type="submit" className="btn btn-primary" value="Submit" /> : <input type="submit" className="btn btn-disable" value="Submit" disabled='disabled' />}

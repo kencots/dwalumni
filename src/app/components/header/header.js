@@ -3,18 +3,25 @@ import {connect} from "react-redux";
 import Link from "pawjs/src/components/link";
 
 class Header extends Component{
+
   state = {
     offsetTop : window.scrollY,
     display : "",
+    token : localStorage.getItem('token'),
   }
   constructor(props){
     super(props)
-    
+     this.handleSignOut = this.handleSignOut.bind(this);
   }
-  componentDidMount(){
+  handleSignOut(event){
+    localStorage.clear();
+    console.log('token dihapus');
+    this.setState({token:null});
+    window.location.pathname("/login")
+    event.preventDefault();
   }
   render(){
-  
+
   window.onscroll = (event)=>{
       const offsetTop = window.scrollY;
       if (this.state.offsetTop < offsetTop && offsetTop > 86 ) {
@@ -32,6 +39,7 @@ class Header extends Component{
       })
   }
   return (
+
     <nav ref="header"  className={`navbar _header-scroll fixed-top ${this.state.display}  navbar-expand-lg navbar-light bg-white z-depth-1`}>
       <div className="container">
         <Link className="navbar-brand" to="/">
@@ -52,20 +60,42 @@ class Header extends Component{
               </div>
             </li>
             <li className="nav-item">
-              <Link className="nav-link font-weight-bold px-3" to="/profil">
-              About
-              </Link>
+            {this.state.token==null ? (
+                 <Link className="nav-link font-weight-bold px-3" to="/login">
+                  About
+                  </Link>
+              ):(
+                 <Link className="nav-link font-weight-bold px-3" to="/profil">
+                  About
+                  </Link>
+              )}
+             
             </li>
             <li className="nav-item">
-              <Link className="nav-link font-weight-bold px-3" to="/blog">Blog</Link>
+             {this.state.token==null ? (
+                 <Link className="nav-link font-weight-bold px-3" to="/login">
+                  Blog
+                  </Link>
+              ):(
+                 <Link className="nav-link font-weight-bold px-3" to="/blog">
+                  Blog
+                  </Link>
+              )}
+            </li>
+            
+            <li className="nav-item">
+              <Link className="nav-link font-weight-bold px-3" to="/">FAQs</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link font-weight-bold px-3" href="#">FAQs</a>
-            </li>
-            <li className="nav-item">
-            <Link className="nav-link font-weight-bold px-3" to="/login">
-              Sign In
-              </Link>
+              {this.state.token == null ? (
+                   <Link className="nav-link font-weight-bold px-3" to="/login">
+                    Sign In
+                  </Link>
+                ):(
+                   <a href="/login">  
+                   <span className="nav-link font-weight-bold px-3" onClick={this.handleSignOut}>Sign Out</span>
+                   </a>
+                )}
             </li>
             <li className="nav-item ">
               <Link className="nav-link bg-primary font-weight-bold text-white px-4" to="/register">

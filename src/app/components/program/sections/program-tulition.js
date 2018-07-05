@@ -3,21 +3,21 @@ import React , {Component} from "react";
 export default class ProgramTulition extends Component {
 	render(){
 		return(
-			<section class="bg-grey pt-5">
-				<div class="container ">
-					<div class="section-header">
-						<h2 class="section-title text-center" >
+			<section className="bg-grey pt-5">
+				<div className="container ">
+					<div className="section-header">
+						<h2 className="section-title text-center" >
 							Program tuition 
-							<span class="underlined text-primary ">foo</span>
+							<span className="underlined text-primary ">foo</span>
 						</h2>
 					</div>
-					<div class="row justify-content-center my-4">
-						<div class="col-lg-4 col-12 my-1">
-							<div class="card border-panel">
-								<div class="card-body">
-									<h5 class="card-title text-center font-weight-bold">-----------------</h5>
-									<h3 class="card-title text-center font-weight-bold">Rp. 15.000.000</h3>
-									<p class="d-block text-muted text-center mb-0">
+					<div className="row justify-content-center my-4">
+						<div className="col-lg-4 col-12 my-1">
+							<div className="card border-panel">
+								<div className="card-body">
+									<h5 className="card-title text-center font-weight-bold">-----------------</h5>
+									<h3 className="card-title text-center font-weight-bold">Rp. 15.000.000</h3>
+									<p className="d-block text-muted text-center mb-0">
 										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -25,12 +25,12 @@ export default class ProgramTulition extends Component {
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-12 my-1">
-							<div class="card border-panel">
-								<div class="card-body">
-									<h5 class="card-title text-center font-weight-bold">-----------------</h5>
-									<h3 class="card-title text-center font-weight-bold">Rp. 15.000.000</h3>
-									<p class="d-block text-muted text-center mb-0">
+						<div className="col-lg-4 col-12 my-1">
+							<div className="card border-panel">
+								<div className="card-body">
+									<h5 className="card-title text-center font-weight-bold">-----------------</h5>
+									<h3 className="card-title text-center font-weight-bold">Rp. 15.000.000</h3>
+									<p className="d-block text-muted text-center mb-0">
 										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -39,14 +39,14 @@ export default class ProgramTulition extends Component {
 							</div>
 						</div>
 					</div>
-					<div class="section-header">
-						<h2 class="section-title text-center" >
+					<div className="section-header">
+						<h2 className="section-title text-center" >
 							Need help with 
 							
-							<span class="underlined text-primary ">financing?</span>
+							<span className="underlined text-primary ">financing?</span>
 						</h2>
 					</div>
-					<p class="text-center">
+					<p className="text-center">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
