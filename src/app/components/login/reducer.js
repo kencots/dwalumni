@@ -8,9 +8,9 @@ const initialState = {
  const tokenReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_TOKEN_PENDING':
-            return {...state, isLoading:true}
-         case 'GET_TOKEN_FULFILLED':
-            return {...state, results : action.payload.data}
+          return {...state, isLoading:true}
+   case 'GET_TOKEN_FULFILLED':
+          return {...state, results : action.payload.data}
     default:
       return state;
   }

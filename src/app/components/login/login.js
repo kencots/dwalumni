@@ -12,17 +12,20 @@ import {getToken} from './action'
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password:'',
-      isChecked:false};
+      isChecked:false,
+      status:400
+    };
 
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangePasswd = this.handleChangePasswd.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChangeEmail(event) {
-    this.setState({email : event.target.value});
+    this.handleSwitch= this.handleSwitch.bind(this);  }
+
+  handleChangeUsername(event) {
+    this.setState({username : event.target.value});
   }
   handleChangePasswd(event){
     this.setState({password:event.target.value});
@@ -30,29 +33,40 @@ import {getToken} from './action'
   handleCheckbox(event){
     this.setState({isChecked:event.target.checked});
     }
+  handleSwitch(){
+    location.pathname="/blog";
+  }
   handleSubmit(){
-     axios({
-              method:'post',
-              url:'http://192.168.0.6:8000/api/authentication/',
-              headers:{
-                "Content-Type":"application/json"
-              },
-              data:{
-                username: this.state.email,
-                password: this.state.password
-              }
-            }).then(function(response){
-              console.log(response);
-              const token=response.data.token;
-              localStorage.setItem('token',token);
-             //this.props.dispatch(getToken(token));
-            });
-      !this.state.isChecked ? this.setState({email:'',password:'',isChecked:false}):'';
+    const self=this
+    if(this.state.username === "" || this.state.password === "" ){
+      alert("Maaf, ada data yang kosong/ belum terisi !!")
+    }else{
+       axios({
+                  method:'post',
+                  url:'http://localhost:8000/api/authentication/',
+                  headers:{
+                    "Content-Type":"application/json"
+                  },
+                  data:{
+                    username: this.state.username,
+                    password: this.state.password
+                  }
+                }).then(function(response){
+              const status= response.request.status;
+              const token=response.data.token
+              self.setState({status:status})
+              localStorage.setItem('token',token)
+              location.pathname="/"
+            }).catch(function(error){
+              alert(error);
+            })
+    }
+      !this.state.isChecked ? this.setState({username:'',password:'',isChecked:false}):'';
       event.preventDefault();
 
   }
   render(){
-    
+      console.log(this.state.isChecked)
     return(
 
 <section style={{background:"#fafafa"}}>
@@ -68,13 +82,12 @@ import {getToken} from './action'
           <hr className="mb-0"/>  
           <small className="d-block text-right text-muted">Dumbways.com</small>
         <div className="d-none d-md-block">
-          <br/> 
-          <form >
+          <form>
           <div className="row">
             <div className="col-12">        
               <div className="_field-input _with-icon _underlined">
-                <input type="text" name="email" placeholder="Email" className="_form-control" autoComplete="off" value={this.state.email}  onChange={this.handleChangeEmail} />
-                <i className="fas fa-at _icon "></i>
+                <input type="text" placeholder="Username" className="_form-control" autoComplete="off" value={this.state.username}  onChange={this.handleChangeUsername} />
+                <i className="fas fa-user _icon "></i>
               </div>
             </div>
           </div>
@@ -82,7 +95,7 @@ import {getToken} from './action'
           <div className="row">
             <div className="col-12">        
               <div className="_field-input _with-icon _underlined">
-                <input type="password" name="password" placeholder="Password" className="_form-control" autoComplete="off" value={this.state.password}  onChange={this.handleChangePasswd}/>
+                <input type="password" placeholder="Password" className="_form-control" autoComplete="off" value={this.state.password}  onChange={this.handleChangePasswd}/>
                 <i className="fas fa-lock _icon "></i>
               </div>
             </div>
@@ -90,22 +103,22 @@ import {getToken} from './action'
           <br/> 
           <div className="d-flex justify-content-between">
             <div className="custom-control custom-checkbox">
-               <input type="checkbox" className="custom-control-input" id="checkbox-remember" value={this.state.isChecked} defaultChecked={this.state.isChecked} onChange={this.handleCheckbox}  />
-                <label className="custom-control-label" htmlFor="checkbox-agree" style={{fontSize: "0.9rem"}}>Remember me</label>
+              <label className="custom-control-label" htmlFor="checkbox-remember" style={{fontSize: "0.9rem"}}>Remember me</label>
+               <input type="checkbox" className="custom-control-input" id="checkbox-remember" defaultChecked={this.state.isChecked}  value={this.state.isChecked} onChange={this.handleCheckbox}  />
             </div>
           </div>
           </form>
-            <a href="/">
+            <div className="float-right">
            <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
-           </a>
+           </div>
         </div>
        <div className="d-block d-md-none">
           <br/> 
-          <form onSubmit={this.handleSubmit}>
+          <form>
           <div className="row">
             <div className="col-12">        
               <div className="_field-input _with-icon _underlined">
-                <input type="email" name="email" placeholder="Email" className="_form-control" autoComplete="off" value={this.state.email}  onChange={this.handleChangeEmail}  />
+                <input type="text" placeholder="username" className="_form-control" autoComplete="off" value={this.state.username}  onChange={this.handleChangeUsername}  />
                 <i className="fas fa-at _icon "></i>
               </div>
             </div>
@@ -114,7 +127,7 @@ import {getToken} from './action'
           <div className="row">
             <div className="col-12">        
               <div className="_field-input _with-icon _underlined">
-                <input type="password" name="password" placeholder="Password" className="_form-control" autoComplete="off" value={this.state.password}  onChange={this.handleChangePasswd}/>
+                <input type="password" placeholder="Password" className="_form-control" autoComplete="off" value={this.state.password}  onChange={this.handleChangePasswd}/>
                 <i className="fas fa-lock _icon "></i>
               </div>
             </div>
@@ -122,14 +135,14 @@ import {getToken} from './action'
           <br/> 
           <div className="d-flex justify-content-between">
             <div className="custom-control custom-checkbox">
-               <input type="checkbox" className="custom-control-input" id="checkbox-agree" value={this.state.isChecked} defaultChecked={this.state.isChecked} onChange={this.handleCheckbox}  />
-
                 <label className="custom-control-label" htmlFor="checkbox-agree" style={{fontSize: "0.9rem"}}>Remember me</label>
+                 <input type="checkbox" className="custom-control-input" id="checkbox-agree" value={this.state.isChecked} defaultChecked={this.state.isChecked} onChange={this.handleCheckbox}  />
             </div>
-            <input type='submit' className="btn btn-primary" value='Submit' />
           </div>
           </form>
-          <button onClick={this.handleSubmit}>Click</button>
+          <div className="float-right">
+          <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+          </div>
         </div>
       </div>
     </div>

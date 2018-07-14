@@ -5,7 +5,7 @@
  */
 
 
-export * from "./components/login/reducer";
+export * from "./components/login/reducer.js";
 
 
 

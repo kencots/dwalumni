@@ -9,8 +9,7 @@ export default class BlogListing extends React.Component {
   render() {
     return (
       <div className="mt-5">
-        {
-          _.map(this.props.preLoadedData.data.results, blog => {
+        { _.map(this.props.preLoadedData.data.results, blog => {
             const id = _.get(blog, "id", 0);
             return (
               <div key={id} className="media">

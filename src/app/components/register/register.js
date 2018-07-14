@@ -218,7 +218,7 @@ export default class Register extends Component{
 						  	<input type="checkbox" className="custom-control-input" id="checkbox-agree" value={this.state.isChecked} onChange={this.handleCheckbox} defaultChecked={this.state.isChecked} />
 						  	<label className="custom-control-label" htmlFor="checkbox-agree" style={{fontSize: "0.9rem"}}>I agree with terms and conditions</label>
 						</div>
-						{this.state.isChecked ? <input type="submit" className="btn btn-primary" value="Submit" /> : <input type="submit" className="btn btn-disable" value="Submit" disabled='disabled' />}
+						{this.state.isChecked ? <Link className="btn btn-primary" to='/user-profil'>Submit</Link> : <input type="submit" className="btn btn-disable" value="Submit" disabled='disabled' />}
 						
 					</div>
 					</form>

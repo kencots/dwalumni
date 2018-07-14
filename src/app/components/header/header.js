@@ -7,7 +7,7 @@ class Header extends Component{
   state = {
     offsetTop : window.scrollY,
     display : "",
-    token : localStorage.getItem('token'),
+    token : localStorage.getItem('token')
   }
   constructor(props){
     super(props)
@@ -62,11 +62,11 @@ class Header extends Component{
             <li className="nav-item">
             {this.state.token==null ? (
                  <Link className="nav-link font-weight-bold px-3" to="/login">
-                  About
+                  Alumni
                   </Link>
               ):(
                  <Link className="nav-link font-weight-bold px-3" to="/profil">
-                  About
+                  Alumni
                   </Link>
               )}
              
@@ -92,9 +92,7 @@ class Header extends Component{
                     Sign In
                   </Link>
                 ):(
-                   <a href="/login">  
-                   <span className="nav-link font-weight-bold px-3" onClick={this.handleSignOut}>Sign Out</span>
-                   </a>
+                   <Link className="nav-link font-weight-bold px-3" onClick={this.handleSignOut} to="/login">Sign Out</Link>
                 )}
             </li>
             <li className="nav-item ">

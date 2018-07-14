@@ -1,9 +1,114 @@
 import React,{Component} from "react";
 import classNames from "classnames";
+import Link from "pawjs/src/components/link";
 
+import _ from "lodash";
+import axios from 'axios';
 
 export default class Detail extends Component{
+	constructor(props) {
+    super(props);
+    const token =localStorage.getItem('token');
+    this.state={
+    	certificate:[],
+    	detailSkill:[],
+    	mainSkill:[],
+    	videos:[],
+    	portfolio:[]
+    }
+    this.handleGetArticle=this.handleGetArticle.bind(this);
+    this.handleGetVideo=this.handleGetVideo.bind(this);
+    this.handleGetPortfolio=this.handleGetPortfolio.bind(this);
+    this.handleGetMainSkill=this.handleGetMainSkill.bind(this);
+    this.handleGetCertificate=this.handleGetCertificate.bind(this);
+  	}
+  	handleGetMainSkill(){
+  		const self=this
+  		const token =localStorage.getItem('token');
+  		axios({
+    		method:'GET',
+    		url : 'http://localhost:8000/api/skill/',
+    		headers : {
+	        'Content-Type':'application/json',
+	        'Authorization':"JWT "+token
+	      }
+    	}).then(function(response){
+    		console.log(response)
+    		self.setState({mainSkill:response.data})
+    	})
+  	}
+  	handleGetCertificate(){
+  		const self=this
+  		const token =localStorage.getItem('token');
+  		axios({
+    		method:'GET',
+    		url : 'http://localhost:8000/api/certificate/',
+    		headers : {
+	        'Content-Type':'application/json',
+	        'Authorization':"JWT "+token
+	      }
+    	}).then(function(response){
+    		console.log(response)
+    		self.setState({certificate:response.data})
+    	})
+  	}
+  	handleGetArticle(){
+  		const self=this
+  		const token =localStorage.getItem('token');
+  		axios({
+    		method:'GET',
+    		url : 'http://localhost:8000/api/detail-skill/',
+    		headers : {
+	        'Content-Type':'application/json',
+	        'Authorization':"JWT "+token
+	      }
+    	}).then(function(response){
+    		console.log(response)
+    		self.setState({detailSkill:response.data})
+    	})
+  	}
+  	handleGetVideo(){
+  		const self=this
+  		const token =localStorage.getItem('token');
+  		axios({
+    		method:'GET',
+    		url : 'http://localhost:8000/api/video/',
+    		headers : {
+	        'Content-Type':'application/json',
+	        'Authorization':"JWT "+token
+	      }
+    	}).then(function(response){
+    		console.log(response)
+    		self.setState({videos:response.data})
+    	})
+  	}
+  	handleGetPortfolio(){
+  		const self=this
+  		const token =localStorage.getItem('token');
+  		axios({
+    		method:'GET',
+    		url : 'http://localhost:8000/api/portfolio/',
+    		headers : {
+	        'Content-Type':'application/json',
+	        'Authorization':"JWT "+token
+	      }
+    	}).then(function(response){
+    		console.log(response)
+    		self.setState({portfolio:response.data})
+    	})
+  	}
+  	componentWillMount(){
+  		this.handleGetArticle()
+  		this.handleGetCertificate()
+  		this.handleGetVideo()
+  		this.handleGetMainSkill()
+  		this.handleGetPortfolio()
+  	}
 	render(){
+		console.log(this.state.certificate.results)
+		console.log("atas sertifikat bawah skill")
+		console.log(this.state.detailSkill.results)
+		console.log(this.state.portfolio.results)
 		return(
 
 			<div className="container">
@@ -22,9 +127,16 @@ export default class Detail extends Component{
 										<h2 className="m-0 p-0 text-white"><small>UI/UX Designer</small></h2>
 									</div>
 								</div>
-								<button className="btn btn-white z-depth-1 bg-white text-primary">
-									 <b>Hire Me</b> 
-								</button>
+								<div className='button-group'>
+									<Link to='/user-profile'>
+										<button className="btn btn-white z-depth-1 bg-white text-primary">
+										 <b>Edit Profil</b> 
+										</button>
+									</Link>
+									<button className="btn btn-white z-depth-1 bg-white text-primary">
+										 <b>Hire Me</b> 
+									</button>
+								</div>
 							</div>
 							<div className="py-3 d-block d-md-none">
 								<div className="d-flex justify-content-between align-items-center ">
@@ -56,11 +168,12 @@ export default class Detail extends Component{
 								<b className="pr-2">Basic</b> 
 								<div className="bg-dark mt-2 col" style={{height: "2px"}} ></div>
 							</h5>
-							<b className="d-block">Gendre : Male</b>
-							<b className="d-block">BirthDay : 9 March 2019</b>
-							<b className="d-block">ExpectedSalery : IDR 20 Jt</b>
-							<b className="d-block">Expected Location : JKT	</b>
-
+							<div className='d-flex flex-column'>
+								<b className="d-block justify-content-between"><i className='fas fa-male text-primary'></i> Gender : Male</b>
+								<b className="d-block"><i className='fas fa-birthday-cake text-info'></i> BirthDay : 9 March 2019</b>
+								<b className="d-block"><i className='fas fa-money-bill-wave text-success'></i> ExpectedSalery : IDR 20 Jt</b>
+								<b className="d-block"><i className='fas fa-map-marked-alt text-warning'></i> Expected Location : JKT	</b>
+							</div>
 							<h5 className="row align-items-center px-3 mt-1">
 								<b className="pr-2 ">About Me</b>
 								<div className="bg-dark mt-2 col" style={{height: "2px"}} ></div>
@@ -77,7 +190,7 @@ export default class Detail extends Component{
 								<div className="col-4"></div>
 								<div className="col-8">
 									<h6 className="m-0">Univetsitas Indonesia</h6>
-									<b className="m-0">Bacholor Degeroo, Information Technology</b>
+									<b className="m-0">Bachelor Degree, Information Technology</b>
 									<p style={{fontSize: "0.9rem"}}>2017 - 2018</p>
 								</div>
 							</div>
@@ -118,12 +231,16 @@ export default class Detail extends Component{
 							</div>
 						</section>
 							<ul className="nav nav-tabs" style={{margin:0}}>
-								  <li>
-								    <a className="nav-link active-tab" href="#"><i className="fab fa-react"></i> React Native</a>
-								  </li>
-								  <li className="nav-item ">
-								    <a className="nav-link inactive-tab" href="#" ><i className="fab fa-python"></i> Python</a>
-								  </li>
+							{ _.map(this.state.mainSkill.results,mainSkill=>{
+								{
+									const id= _.get(mainSkill,"id")
+								}
+								return(
+									<li>
+								    	<a className="nav-link inactive-tab" href="#" style={{transform: "skewX(15deg)"}}><i className={ _.get(mainSkill, "icon")}></i> { _.get(mainSkill, "name")}</a>
+								  	</li>
+									)
+							})}
 								</ul>
 							<div className="container border border-light z-depth-1 mr-md-auto" style={{margin: "0px 0 20px 0"}}>
 
@@ -136,77 +253,32 @@ export default class Detail extends Component{
 					</div>
 					<div className="section-body py-0" style={{marginTop:"-50px"}}>
 					<div className="row">
-						<div className="col-md-4 fluid-div">
-							
-							<section>
-								<div className="container">
-									<div className="section-body">
-												
-												<div className="card bg-grey item-left">
-													<div className="card-body">
-														<h5 className="card-title text-bold">Dumbways App</h5>
-														<p className="card-subtitle text-note">
-															Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-														</p>
-														<a href="#" className="card-link">
-															<i className="fab fa-github card-icon-link"></i>
-														</a>
-													</div>
+							{ _.map(this.state.portfolio.results,portfolio=>{
+								{
+									const id= _.get(portfolio,"id")
+								}
+								return(
+									<div className="col-md-4 fluid-div">
+										<section>
+											<div className="container">
+												<div className="section-body">
+														<div className="card bg-grey item-left">
+															<div className="card-body">
+																<h5 className="card-title text-bold">{ _.get(portfolio,"title")}</h5>
+																<p className="card-subtitle text-note">
+																	{ _.get(portfolio,"description")}	
+																</p>
+																<a href={ _.get(portfolio,"github_url")} className="card-link">
+																	<i className="fab fa-github card-icon-link"></i>
+																</a>
+															</div>
+														</div>
 												</div>
-
+											</div>
+										</section>
 									</div>
-								</div>
-							</section>
-
-						</div>
-						<div className="col-md-4 fluid-div">
-							
-							<section>
-								<div className="container">
-									<div className="section-body">
-												
-												<div className="card bg-grey item-left">
-													<div className="card-body">
-														<h5 className="card-title text-bold">Dumbways App</h5>
-														<p className="card-subtitle text-note">
-															Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-														</p>
-														<a href="#" className="card-link">
-															<i className="fab fa-github card-icon-link"></i>
-														</a>
-													</div>
-												</div>
-
-									</div>
-								</div>
-							</section>
-							
-						</div>
-						<div className="col-md-4 fluid-div">
-							
-							<section>
-								<div className="container">
-									<div className="section-body">
-												
-												<div className="card bg-grey item-left">
-													<div className="card-body">
-														<h5 className="card-title text-bold">Dumbways App</h5>
-														<p className="card-subtitle text-note">
-															Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-														</p>
-														<a href="#" className="card-link">
-															<i className="fab fa-github card-icon-link"></i>
-														</a>
-													</div>
-												</div>
-
-									</div>
-								</div>
-							</section>
-							
-						</div>
-			
-			
+								)
+							})}
 			</div>
 		</div>
 	</div>
@@ -316,10 +388,20 @@ export default class Detail extends Component{
 									<div className="container">
 										<div className="section-body">
 											<div className="card">
-												<div className="card-body">
-													<p className="text-bold card-title">Exam Video Result</p>
-														<iframe className="w-100 h-100" src="https://www.youtube.com/embed/8XVATypXio0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-												</div>
+											{ _.map(this.state.videos.results, video =>{
+													{
+													const id =	_.get(video, "id")
+													const pic=  _.get(video,"url")
+													}
+													return(
+															<div className="card-body">
+																<p className="text-bold card-title">{ _.get(video,"title")}</p>
+																	<iframe className="w-100 h-100" src={ _.get(video,"url")} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+															</div>
+														)
+											})
+				}
+												
 												<div className="card-body">
 													<p className="text-bold card-title">Exam Interview Result</p>
 													<iframe className="w-100 h-100" src="https://www.youtube.com/embed/8XVATypXio0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -368,103 +450,29 @@ export default class Detail extends Component{
 															<div className="col-md-12">
 
 																<div className="container fluid-div" >
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>Component</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																	</div>
-																</div>
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>Props</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																	</div>
-																</div>
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>State</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																	</div>
-																</div>
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>Styling</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																	</div>
-																</div>
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>React Navigation</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																	</div>
-																</div>
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>Nativebase</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																	</div>
-																</div>
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>Redux</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																	</div>
-																</div>
-																<div className="d-flex">
-																	<div className="mr-auto">
-																		<p>REST API</p>
-																	</div>
-																	<div className="ml-auto">
-																		<i className="text-primary fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																		<i className="text-dark fas fa-star"></i>
-																	</div>
-																</div>
-																
+																	{
+																		_.map(this.state.detailSkill.results, skill =>{
+																			{
+																			const id =	_.get(skill, "id")
+																			}
+																			return(
+																					<div className="d-flex" >
+																						<div className="mr-auto">
+																							<p>{ _.get(skill, "name") }</p>
+																						</div>
+																						<div className="ml-auto">
+																							<i className="text-primary fas fa-star"></i>
+																							<i className="text-primary fas fa-star"></i>
+																							<i className="text-primary fas fa-star"></i>
+																							<i className="text-primary fas fa-star"></i>
+																							<i className="text-primary fas fa-star"></i>
+																						</div>
+																					</div>
+																				)
+																		})
+																	}
+																		
+																	
 															</div>
 
 															</div>
@@ -557,12 +565,19 @@ export default class Detail extends Component{
 		</div>
 		<div className="section-body">
 			<div className="row">
-				<div className="col-md-4">
-					<img src="https://omextemplates.content.office.net/support/templates/en-us/lt04027254.png " className="img-fluid"/>
-				</div>
-				<div className="col-md-4">
-					<img src="https://omextemplates.content.office.net/support/templates/en-us/lt04027254.png" className="img-fluid"/>
-				</div>
+				{
+					_.map(this.state.certificate.results, certificate =>{
+						{
+						const id =	_.get(certificate, "id")
+						}
+						return(
+								<div className="col-md-4">
+									<img src={ _.get(certificate, "picture") } className="img-fluid"/>
+								</div>
+							)
+					})
+				}
+				
 			</div>
 		</div>
 	</div>

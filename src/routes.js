@@ -9,6 +9,7 @@ import * as Profil from "./pages/profil";
 import * as Detail from "./pages/detail";
 import * as Login from "./pages/login";
 import * as Register from "./pages/register";
+import * as UserProfile from "./pages/user-profile"
 import * as ProgressiveImageRendering from "./pages/progressive-image-rendering";
 import * as Counter from "./pages/counter";
 
@@ -19,5 +20,6 @@ export default configureRoutes([
   Register,
   Profil,
   Detail,
+  UserProfile,
   Blog
 ]);

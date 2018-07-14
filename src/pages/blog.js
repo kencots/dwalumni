@@ -13,13 +13,13 @@ const routes = [
     component: BlogListing,
     preLoadData: async ({ api }) =>{
       return axios({
-      method : 'GET',
-      url : 'http://192.168.0.6:8000/api/skill/',
-      headers : {
-        'Content-Type':'application/json',
-        'Authorization':"JWT "+token
-      }
-});
+        method : 'GET',
+        url : 'http://localhost:8000/api/skill/',
+        headers : {
+          'Content-Type':'application/json',
+          'Authorization':"JWT "+token
+        }
+      });
     }
   },
   {
